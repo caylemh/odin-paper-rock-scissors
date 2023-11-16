@@ -33,6 +33,7 @@
                 console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n")
             } else {
                 console.log(chooseWinner(computerChoice,playerChoice));
+                console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
             }
 
         }
@@ -41,7 +42,6 @@
         function gameLoop() {
             while ((playerScore < 5) && (computerScore < 5)) {
                 singleGame();
-                console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
             }
 
             //Final Score
