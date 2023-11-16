@@ -11,9 +11,50 @@
     <h3>-- Press F12 and go to console to view results --</h3>
 
     <script>
+        //Determine the Winner
+        function chooseWinner(computerChoice,playerChoice) {
+            if (computerChoice == playerChoice) {
+                console.log(`It's a DRAW`);
+            } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
+                console.log(`You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`);  
+            } else {
+                console.log(`You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`);
+            }
+        }
+
+        //PLay a game
+        function playGame() {
+            playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
+            computerChoice = Math.floor(Math.random() * 3);
+
+            switch(playerChoice) {
+                case 0: {
+                    chooseWinner(computerChoice,playerChoice);
+                    break;
+                }
+                case 1: {
+                    chooseWinner(computerChoice,playerChoice);
+                    break;
+                }
+                case 2: {
+                    chooseWinner(computerChoice,playerChoice);
+                    break;
+                }
+                default: console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! ");
+            }
+        }
+
         //Intialise the start variables
+        const RPS = ["rock","paper","scissors"];
+        let playerChoice, computerChoice = 0;
         let playerScore = 0;
         let computerScore = 0;
+
+        playGame();
+
+        // while ((playerScore != 5) || (computerScore != 5)) {
+
+        // }
         
     </script>
 </body>
