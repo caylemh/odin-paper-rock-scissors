@@ -14,13 +14,13 @@
         //Determine the Winner
         function chooseWinner(computerChoice,playerChoice) {
             if (computerChoice == playerChoice) {
-                console.log(`It's a DRAW`);
+                return `It's a DRAW`;
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
-                console.log(`You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`); 
-                playerScore++ 
+                playerScore++
+                return `You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`;  
             } else {
-                console.log(`You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`);
                 computerScore++
+                return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
             }
         }
 
@@ -29,21 +29,12 @@
             const playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
             const computerChoice = Math.floor(Math.random() * 3);
 
-            switch(playerChoice) {
-                case 0: {
-                    chooseWinner(computerChoice,playerChoice);
-                    break;
-                }
-                case 1: {
-                    chooseWinner(computerChoice,playerChoice);
-                    break;
-                }
-                case 2: {
-                    chooseWinner(computerChoice,playerChoice);
-                    break;
-                }
-                default: console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n");
+            if ((typeof(playerChoice) != 'number') || (playerChoice > 2) || (playerChoice == 'undefined')) {
+                console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n")
+            } else {
+                console.log(chooseWinner(computerChoice,playerChoice));
             }
+
         }
 
         //Best of 5
@@ -51,7 +42,13 @@
             while ((playerScore < 5) && (computerScore < 5)) {
                 singleGame();
                 console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
+            }
 
+            //Final Score
+            if(playerScore == 5) {
+                console.log('You WIN the set!!! Welldone!');
+            } else {
+                console.log('You LOST! Better luck next time!');
             }
         }
 
@@ -61,13 +58,6 @@
         const RPS = ["rock","paper","scissors"];
 
         gameLoop();
-
-        //Final Score
-        if(playerScore == 5) {
-            console.log('You WIN the set!!! Welldone!');
-        } else {
-            console.log('You LOST! Better luck next time!');
-        }
         
     </script>
 </body>
