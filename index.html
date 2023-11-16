@@ -29,7 +29,7 @@
             const playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
             const computerChoice = Math.floor(Math.random() * 3);
 
-            if ((typeof(playerChoice) != 'number') || (playerChoice > 2) || (playerChoice == 'undefined')) {
+            if ((typeof(playerChoice) != 'number') || (playerChoice > RPS.length-1)) {
                 console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n")
             } else {
                 console.log(chooseWinner(computerChoice,playerChoice));
