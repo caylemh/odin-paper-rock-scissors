@@ -16,16 +16,18 @@
             if (computerChoice == playerChoice) {
                 console.log(`It's a DRAW`);
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
-                console.log(`You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`);  
+                console.log(`You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`); 
+                playerScore++ 
             } else {
                 console.log(`You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`);
+                computerScore++
             }
         }
 
-        //PLay a game
-        function playGame() {
-            playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
-            computerChoice = Math.floor(Math.random() * 3);
+        //Play a game
+        function singleGame() {
+            const playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
+            const computerChoice = Math.floor(Math.random() * 3);
 
             switch(playerChoice) {
                 case 0: {
@@ -40,21 +42,32 @@
                     chooseWinner(computerChoice,playerChoice);
                     break;
                 }
-                default: console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! ");
+                default: console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n");
+            }
+        }
+
+        //Best of 5
+        function gameLoop() {
+            while ((playerScore < 5) && (computerScore < 5)) {
+                singleGame();
+                console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
+
             }
         }
 
         //Intialise the start variables
-        const RPS = ["rock","paper","scissors"];
-        let playerChoice, computerChoice = 0;
         let playerScore = 0;
         let computerScore = 0;
+        const RPS = ["rock","paper","scissors"];
 
-        playGame();
+        gameLoop();
 
-        // while ((playerScore != 5) || (computerScore != 5)) {
-
-        // }
+        //Final Score
+        if(playerScore == 5) {
+            console.log('You WIN the set!!! Welldone!');
+        } else {
+            console.log('You LOST! Better luck next time!');
+        }
         
     </script>
 </body>
