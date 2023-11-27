@@ -15,11 +15,11 @@
         <h3>Come test your mettle against the Computer!</h3>
         <div class="game-view">
             <img src="./images/hello-pc.gif" alt="happy-pc-gif" class="img-pc" />
-            <h3 class="display-msg">Make our choice</h3>
+            <h3 class="display-msg">- Make your choice -</h3>
             <div class="results-view hide">
-                <img src="./images/Paper.gif" alt="paper-gif">
-                <h2>- BEATS -</h2>
-                <img src="./images/Scissors.gif" alt="paper-gif">
+                <img src="./images/Paper.gif" alt="paper-gif" class="player">
+                <h2>- <span>BEATS</span> -</h2>
+                <img src="./images/Scissors.gif" alt="paper-gif" class="pc">
             </div>
             <hr  class="hide">
         </div>
@@ -34,13 +34,17 @@
         //Determine the Winner
         function chooseWinner(computerChoice,playerChoice) {
             if (computerChoice == playerChoice) {
-                return `It's a DRAW`;
+                displayMsg.textContent = `It's a DRAW`;
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
                 playerScore++
-                return `You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`;  
+                displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
+
+                // return `You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`;  
             } else {
                 computerScore++
-                return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
+                displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
+                
+                // return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
             }
         }
 
@@ -49,13 +53,13 @@
             // const playerChoice = choice;
             const computerChoice = Math.floor(Math.random() * 3);
 
-            if ((typeof(choice) != 'number') || (choice > RPS.length-1) || choice < 0) {
-                console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n")
-            } else {
-                console.log(chooseWinner(computerChoice,choice));
-                console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
-            }
+            chooseWinner(computerChoice,choice);
 
+            if (playerScore >= 5) {
+                displayMsg.textContent = "You are the WINNER!!!";
+            } else if(computerScore >= 5) {
+                displayMsg.textContent = "Computer WINS!!! Better luck next time!"
+            }
         }
 
         //Best of 5
@@ -77,7 +81,28 @@
         let computerScore = 0;
         const RPS = ["rock","paper","scissors"];
 
-        gameLoop();
+        const displayMsg = document.querySelector(".display-msg");
+        const rock = document.querySelector(".rock");
+        const paper = document.querySelector(".paper");
+        const scissors = document.querySelector(".scissors");
+        const bgColor = document.querySelector("body");
+        const pcImage = document.querySelector(".img-pc");
+        const playerResultImg = document.querySelector(".player");
+        const pcResultImg = document.querySelector(".pc");
+        const resultView = document.querySelector(".result-view");
+
+
+        scissors.addEventListener("click", () => {
+            singleGame(2);
+        });
+
+        rock.addEventListener("click", () => {
+            singleGame(0);
+        });
+
+        paper.addEventListener("click", () => {
+            singleGame(1);
+        });
         
     </script>
 </body>
