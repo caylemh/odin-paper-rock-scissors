@@ -29,6 +29,12 @@ h1 {
     margin: 1rem 0;
 }
 
+*:disabled {
+    opacity: 0;
+    box-shadow: none;
+    transition: none;
+}
+
 .container {
     display: block;
     height: 80vh;
@@ -93,5 +99,5 @@ h1 {
 }
 
 .lose {
-    
+
 }

@@ -43,8 +43,16 @@
             } else {
                 computerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
-                
+
                 // return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
+            }
+
+
+            //End game conditions
+            if (playerScore >= 5) {
+                displayMsg.textContent = "You are the WINNER!!!";
+            } else if(computerScore >= 5) {
+                displayMsg.textContent = "Computer WINS!!! Better luck next time!"
             }
         }
 
@@ -54,12 +62,6 @@
             const computerChoice = Math.floor(Math.random() * 3);
 
             chooseWinner(computerChoice,choice);
-
-            if (playerScore >= 5) {
-                displayMsg.textContent = "You are the WINNER!!!";
-            } else if(computerScore >= 5) {
-                displayMsg.textContent = "Computer WINS!!! Better luck next time!"
-            }
         }
 
         //Best of 5
@@ -90,6 +92,7 @@
         const playerResultImg = document.querySelector(".player");
         const pcResultImg = document.querySelector(".pc");
         const resultView = document.querySelector(".result-view");
+        const playerView = document.querySelector(".player-view")
 
 
         scissors.addEventListener("click", () => {
