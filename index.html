@@ -6,9 +6,24 @@
     <title>Odin Paper-Rock-Scissors</title>
 </head>
 <body>
-
-    <h1>Console based Paper-Rock-Scissors</h1>
-    <h3>-- Press F12 and go to console to view results --</h3>
+    <div class="container">
+        <h1>Rock, Paper, Scissors</h1>
+        <h3>Come test your mettle against the Computer!</h3>
+        <div class="game-view">
+            <img src="./images/hello-pc.gif" alt="happy-pc-gif" class="img-pc" />
+            <h3 class="display-msg">Make our choice</h3>
+            <div class="results-view">
+                <img src="./images/Paper.gif" alt="paper-gif">
+                <h2>- BEATS -</h2>
+                <img src="./images/Scissors.gif" alt="paper-gif">
+            </div>
+        </div>
+        <div class="player-view">
+            <img class="scissors" src="./images/1.png" alt="scissor-images">
+            <img class="rock" src="./images/2.png" alt="rock-images">
+            <img class="paper" src="./images/3.png" alt="paper-images">
+        </div>
+    </div>
 
     <script>
         //Determine the Winner
@@ -25,14 +40,14 @@
         }
 
         //Play a game
-        function singleGame() {
-            const playerChoice = parseInt(prompt("1-Rock, 2-Paper, 3-Scissors! Shoot! ")) - 1;
+        function singleGame(choice) {
+            // const playerChoice = choice;
             const computerChoice = Math.floor(Math.random() * 3);
 
-            if ((typeof(playerChoice) != 'number') || (playerChoice > RPS.length-1)) {
+            if ((typeof(choice) != 'number') || (choice > RPS.length-1) || choice < 0) {
                 console.log("Please choose from 1-Rock, 2-Paper, 3-Scissors! Shoot! \n")
             } else {
-                console.log(chooseWinner(computerChoice,playerChoice));
+                console.log(chooseWinner(computerChoice,choice));
                 console.log(`You = ${playerScore}, CPU = ${computerScore}\n\n`);
             }
 
