@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Paper-Rock-Scissors</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vina+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="container" role="main">
         <h1>Rock, Paper, Scissors</h1>
         <h3>Come test your mettle against the Computer!</h3>
         <div class="game-view">
             <img src="./images/hello-pc.gif" alt="happy-pc-gif" class="img-pc" />
             <h3 class="display-msg">Make our choice</h3>
-            <div class="results-view">
+            <div class="results-view hide">
                 <img src="./images/Paper.gif" alt="paper-gif">
                 <h2>- BEATS -</h2>
                 <img src="./images/Scissors.gif" alt="paper-gif">
             </div>
+            <hr  class="hide">
         </div>
         <div class="player-view">
             <img class="scissors" src="./images/1.png" alt="scissor-images">

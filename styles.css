@@ -1,0 +1,89 @@
+*,::before,::after {
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-family: "Permanent Marker", sans-serif;
+    font-size: 18px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+hr {
+    display: block;
+    border-width: 12px;
+    border-radius: 5px;
+    border: 3px solid grey;
+    width: 60%;
+    margin: 0 auto
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+.container {
+    display: block;
+    height: 80vh;
+    width: 75%;
+    text-align: center;
+    margin: 0 auto
+}
+
+.game-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-view > img {
+    width: 250px;
+    margin: 0 auto;
+    border-radius: 15%;
+}
+
+.results-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-view img {
+    width: 100px;
+    border: 2px solid black;
+    border-radius: 15%;
+    margin: 20px;
+    object-fit: contain;
+}
+
+.player-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-view img {
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px grey;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.player-view img:hover {
+    box-shadow: 0 10px 8px rgb(192, 192, 192);
+    transform: scale(105%);
+}
+
+
+
+.hide {
+    display: none;
+}
