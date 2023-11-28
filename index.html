@@ -38,15 +38,29 @@
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
                 playerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
-
+                resultView.classList.toggle("hide");
+                bgColor.classList.add("win");
+                pcImage.setAttribute("src",'./images/angry-pc.gif')
                 // return `You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`;  
             } else {
                 computerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
-
+                resultView.classList.toggle("hide");
+                bgColor.classList.add("lose")
+                pcImage.setAttribute("src",'./images/happy-pc.gif')
                 // return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
             }
+        }
 
+        //Play a game
+        function singleGame(choice) {
+            resultView.classList.add("hide");
+            bgColor.classList.remove("lose");
+            bgColor.classList.remove("win");
+            // const playerChoice = choice;
+            const computerChoice = Math.floor(Math.random() * 3);
+
+            chooseWinner(computerChoice,choice);
 
             //End game conditions
             if (playerScore >= 5) {
@@ -56,14 +70,6 @@
                 displayMsg.textContent = "Computer WINS!!! Better luck next time!"
                 playGame = false;
             }
-        }
-
-        //Play a game
-        function singleGame(choice) {
-            // const playerChoice = choice;
-            const computerChoice = Math.floor(Math.random() * 3);
-
-            chooseWinner(computerChoice,choice);
         }
 
         //Best of 5
@@ -93,7 +99,7 @@
         const pcImage = document.querySelector(".img-pc");
         const playerResultImg = document.querySelector(".player");
         const pcResultImg = document.querySelector(".pc");
-        const resultView = document.querySelector(".result-view");
+        const resultView = document.querySelector(".results-view");
         const playerView = document.querySelector(".player-view")
         let playGame = true;
 

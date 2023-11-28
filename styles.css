@@ -95,9 +95,9 @@ h1 {
 }
 
 .win {
-
+    background-color: rgb(84, 182, 84);
 }
 
 .lose {
-
+    background-color: rgb(185, 83, 83);
 }
