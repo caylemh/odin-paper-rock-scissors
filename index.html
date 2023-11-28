@@ -28,6 +28,9 @@
             <img class="rock" src="./images/2.png" alt="rock-images">
             <img class="paper" src="./images/3.png" alt="paper-images">
         </div>
+        <div class="restart hide">
+            <button>Play Again?</button>
+        </div>
     </div>
 
     <script>
@@ -39,7 +42,8 @@
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
                 playerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
-                resultView.classList.toggle("hide");
+                resultView.classList.remove("hide");
+                bgColor.classList.remove("lose")
                 bgColor.classList.add("win");
                 pcImage.setAttribute("src",'./images/angry-pc.gif');
                 playerResultImg.setAttribute("src", `./images/${RPS[playerChoice]}.gif`);
@@ -48,26 +52,34 @@
             } else {
                 computerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
-                resultView.classList.toggle("hide");
+                resultView.classList.remove("hide");
+                bgColor.classList.remove("win")
                 bgColor.classList.add("lose")
                 pcImage.setAttribute("src",'./images/happy-pc.gif')
-                playerResultImg.setAttribute("src", `./images/${RPS[playerChoice]}.gif`);
-                pcResultImg.setAttribute("src", `./images/${RPS[computerChoice]}.gif`);
+                playerResultImg.setAttribute("src", `./images/${RPS[computerChoice]}.gif`);
+                pcResultImg.setAttribute("src", `./images/${RPS[playerChoice]}.gif`);
                 // return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
             }
         }
 
         //Reset the game
         function resetGame() {
-            resultView.classList.add("hide");
-            bgColor.classList.remove("lose");
-            bgColor.classList.remove("win");
+            location.reload();
+            // resultView.classList.add("hide");
+            // bgColor.classList.remove("lose");
+            // bgColor.classList.remove("win");
+        }
+
+        function endGame() {
+            playerView.classList.add("hide")
+            resultView.classList.add("hide")
+            restart.classList.remove("hide")
         }
 
         //Play a game
         function singleGame(choice) {
 
-            resetGame();
+            // resetGame();
             
             // const playerChoice = choice;
             const computerChoice = Math.floor(Math.random() * 3);
@@ -77,10 +89,10 @@
             //End game conditions
             if (playerScore >= 5) {
                 displayMsg.textContent = "You are the WINNER!!!";
-                playGame = false;
+                endGame();
             } else if(computerScore >= 5) {
                 displayMsg.textContent = "Computer WINS!!! Better luck next time!"
-                playGame = false;
+                endGame();
             }
         }
 
@@ -112,9 +124,8 @@
         const playerResultImg = document.querySelector(".player");
         const pcResultImg = document.querySelector(".pc");
         const resultView = document.querySelector(".results-view");
-        const playerView = document.querySelector(".player-view")
-        let playGame = true;
-
+        const playerView = document.querySelector(".player-view");
+        const restart = document.querySelector(".restart");
 
         scissors.addEventListener("click", () => {
             singleGame(2);
@@ -128,10 +139,7 @@
             singleGame(1);
         });
 
-        //End game conditions
-        if (playGame == false) {
-            
-        }
+        restart.addEventListener("click", resetGame);
         
     </script>
 </body>
