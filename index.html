@@ -17,9 +17,9 @@
             <img src="./images/hello-pc.gif" alt="happy-pc-gif" class="img-pc" />
             <h3 class="display-msg">- Make your choice -</h3>
             <div class="results-view hide">
-                <img src="./images/Paper.gif" alt="paper-gif" class="player">
+                <img src="./images/paper.gif" alt="paper-gif" class="player">
                 <h2>- <span>BEATS</span> -</h2>
-                <img src="./images/Scissors.gif" alt="paper-gif" class="pc">
+                <img src="./images/scissors.gif" alt="paper-gif" class="pc">
             </div>
             <hr  class="hide">
         </div>
@@ -35,12 +35,15 @@
         function chooseWinner(computerChoice,playerChoice) {
             if (computerChoice == playerChoice) {
                 displayMsg.textContent = `It's a DRAW`;
+                pcImage.setAttribute("src",'./images/hello-pc.gif')
             } else if (((playerChoice == 0) && (computerChoice == 2)) || ((playerChoice == 1) && (computerChoice == 0)) || ((playerChoice == 2) && (computerChoice == 1))) { 
                 playerScore++
                 displayMsg.textContent = `You = ${playerScore}, CPU = ${computerScore}`;
                 resultView.classList.toggle("hide");
                 bgColor.classList.add("win");
-                pcImage.setAttribute("src",'./images/angry-pc.gif')
+                pcImage.setAttribute("src",'./images/angry-pc.gif');
+                playerResultImg.setAttribute("src", `./images/${RPS[playerChoice]}.gif`);
+                pcResultImg.setAttribute("src", `./images/${RPS[computerChoice]}.gif`);
                 // return `You WIN! ${RPS[playerChoice].toUpperCase()} beats ${RPS[computerChoice].toUpperCase()}`;  
             } else {
                 computerScore++
@@ -48,15 +51,24 @@
                 resultView.classList.toggle("hide");
                 bgColor.classList.add("lose")
                 pcImage.setAttribute("src",'./images/happy-pc.gif')
+                playerResultImg.setAttribute("src", `./images/${RPS[playerChoice]}.gif`);
+                pcResultImg.setAttribute("src", `./images/${RPS[computerChoice]}.gif`);
                 // return `You LOSE! ${RPS[computerChoice].toUpperCase()} beats ${RPS[playerChoice].toUpperCase()}`;
             }
         }
 
-        //Play a game
-        function singleGame(choice) {
+        //Reset the game
+        function resetGame() {
             resultView.classList.add("hide");
             bgColor.classList.remove("lose");
             bgColor.classList.remove("win");
+        }
+
+        //Play a game
+        function singleGame(choice) {
+
+            resetGame();
+            
             // const playerChoice = choice;
             const computerChoice = Math.floor(Math.random() * 3);
 
